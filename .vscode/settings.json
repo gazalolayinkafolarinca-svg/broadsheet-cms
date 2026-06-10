@@ -1,0 +1,10 @@
+{
+  "liveServer.settings.ignoreFiles": [
+    "**/*.db",
+    "**/*.db-shm",
+    "**/*.db-wal",
+    "**/instance/**",
+    "**/__pycache__/**",
+    "**/*.pyc"
+  ]
+}

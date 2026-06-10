@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — The Broadsheet CMS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+
+<!-- ── LOGIN SCREEN ──────────────────────────────────────── -->
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <div class="login-logo">
+      <span class="logo-main">The Broadsheet</span>
+      <span class="login-sub">CMS Admin — 2026</span>
+    </div>
+    <div class="form-group">
+      <label for="loginEmail">Email Address</label>
+      <input type="email" id="loginEmail" placeholder="admin@broadsheet.com" autocomplete="email">
+    </div>
+    <div class="form-group">
+      <label for="loginPassword">Password</label>
+      <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password">
+    </div>
+    <div id="loginError" class="alert alert-error" style="display:none;"></div>
+    <button class="btn btn-primary btn-full" id="loginBtn">Sign In</button>
+  </div>
+</div>
+
+<!-- ── MAIN APP ───────────────────────────────────────────── -->
+<div id="adminApp" class="admin-app" style="display:none;">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <span class="logo-main" style="font-size:1.2rem;">The Broadsheet</span>
+      <span style="font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;opacity:.5;margin-top:2px;">CMS 2026</span>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" data-view="dashboard">
+        <span class="nav-icon">📊</span> Dashboard
+      </a>
+      <a href="#" class="nav-item" data-view="articles">
+        <span class="nav-icon">📰</span> Articles
+      </a>
+      <a href="#" class="nav-item" data-view="new-article">
+        <span class="nav-icon">✍️</span> New Article
+      </a>
+      <a href="#" class="nav-item" data-view="ai-generate">
+        <span class="nav-icon">🤖</span> AI Generate
+      </a>
+      <a href="#" class="nav-item" data-view="media">
+        <span class="nav-icon">🖼️</span> Media Library
+      </a>
+      <a href="#" class="nav-item" data-view="authors">
+        <span class="nav-icon">👥</span> Authors
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-info" id="sidebarUser">
+        <div class="user-avatar" id="sidebarAvatar">A</div>
+        <div>
+          <div class="user-name" id="sidebarName">Admin</div>
+          <div class="user-role" id="sidebarRole">superadmin</div>
+        </div>
+      </div>
+      <button class="btn btn-ghost btn-sm" id="logoutBtn">Sign Out</button>
+    </div>
+  </aside>
+
+  <!-- Main area -->
+  <div class="main-area">
+    <div class="topbar">
+      <h1 class="topbar-title" id="topbarTitle">Dashboard</h1>
+      <div class="topbar-actions">
+        <a href="../index.html" target="_blank" class="btn btn-ghost btn-sm">View Site ↗</a>
+      </div>
+    </div>
+
+    <div class="content-wrap" id="contentWrap">
+      <!-- Loaded dynamically by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ── CONFIRM MODAL ──────────────────────────────────────── -->
+<div class="modal-backdrop" id="confirmBackdrop" style="display:none;">
+  <div class="confirm-modal">
+    <h3 id="confirmTitle">Confirm Action</h3>
+    <p id="confirmMessage">Are you sure?</p>
+    <div class="confirm-actions">
+      <button class="btn btn-ghost" id="confirmCancel">Cancel</button>
+      <button class="btn btn-danger" id="confirmOk">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── TOAST ──────────────────────────────────────────────── -->
+<div class="admin-toast" id="adminToast"></div>
+
+<script src="../js/config.js"></script>
+<script src="../js/api.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
