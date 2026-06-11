@@ -6,7 +6,7 @@
 
 const CONFIG = {
   // Backend API base URL — change for production
-  API_BASE: 'https://broadsheet-cms-api.onrender.com',
+  API_BASE: 'https://broadsheet-cms-api.onrender.com/api'
 
   // Pagination
   ARTICLES_PER_PAGE: 9,
