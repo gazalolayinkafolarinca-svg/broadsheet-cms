@@ -50,12 +50,14 @@ def require_auth(f):
         except jwt.InvalidTokenError:
             return jsonify({"error": "Invalid token"}), 401
 
-        db = get_db()
-        user = db.execute(
-            "SELECT id, email, name, role, is_active FROM admin_users WHERE id=?",
+        conn = get_db()
+        cur  = conn.cursor()
+        cur.execute(
+            "SELECT id, email, name, role, is_active FROM admin_users WHERE id=%s",
             (int(payload["sub"]),)
-        ).fetchone()
-        db.close()
+        )
+        user = cur.fetchone()
+        conn.close()
 
         if not user or not user["is_active"]:
             return jsonify({"error": "User not found or inactive"}), 401
