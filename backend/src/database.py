@@ -7,16 +7,16 @@ THE BROADSHEET CMS — Database Schema & Init (PostgreSQL)
 import os
 import hashlib
 import secrets
-import psycopg2
-import psycopg2.extras
+import psycopg
+from psycopg.rows import dict_row
 from datetime import datetime, timezone
 
 DATABASE_URL = os.getenv("DATABASE_URL", "")
 
 
 def get_db():
-    """Return a psycopg2 connection with RealDictCursor."""
-    conn = psycopg2.connect(DATABASE_URL, cursor_factory=psycopg2.extras.RealDictCursor)
+    """Return a psycopg v3 connection with dict row factory."""
+    conn = psycopg.connect(DATABASE_URL, row_factory=dict_row)
     return conn
 
 
