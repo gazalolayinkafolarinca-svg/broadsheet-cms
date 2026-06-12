@@ -16,17 +16,15 @@ sys.path.insert(0, os.getcwd())
 from dotenv import load_dotenv
 load_dotenv()
 
-db_path = os.getenv("DATABASE_PATH", "instance/broadsheet.db")
-
-if not os.path.exists(db_path):
-    print("=" * 50)
-    print("First run detected — initialising database...")
-    print("=" * 50)
-    from src.database import init_db
-    init_db()
-    print("=" * 50)
-    print("Database ready.")
-    print("=" * 50)
+# Always init DB — safe because all CREATE TABLE statements use IF NOT EXISTS
+print("=" * 50)
+print("Initialising database...")
+print("=" * 50)
+from src.database import init_db
+init_db()
+print("=" * 50)
+print("Database ready.")
+print("=" * 50)
 
 from src.server import create_app
 from src.services.scheduler import run_scheduler
